@@ -1,0 +1,7 @@
+{
+  "name": "StockSlider",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
