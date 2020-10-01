@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ModalService } from '../shared/modal/service/modal.service';
+import { HomePageService } from './home.page.service';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +9,11 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(private pageService: HomePageService) { }
+
+
+  addStock() {
+    this.pageService.addStock();
+  }
 
 }

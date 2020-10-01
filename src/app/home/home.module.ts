@@ -1,10 +1,12 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonicModule } from '@ionic/angular';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HomePage } from './home.page';
-
+import { IonicModule } from '@ionic/angular';
+import { SharedModule } from '../shared/shared.module';
 import { HomePageRoutingModule } from './home-routing.module';
+import { HomePage } from './home.page';
+import { HomePageService } from './home.page.service';
+
 
 
 @NgModule({
@@ -12,8 +14,12 @@ import { HomePageRoutingModule } from './home-routing.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    HomePageRoutingModule,
+    SharedModule
   ],
-  declarations: [HomePage]
+  declarations: [HomePage],
+  providers: [
+    HomePageService
+  ]
 })
-export class HomePageModule {}
+export class HomePageModule { }
