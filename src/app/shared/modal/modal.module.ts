@@ -1,8 +1,9 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { OperationModalComponent } from './operation-modal/operation-modal.component';
 import { ModalService } from './service/modal.service';
 import { StockModalComponent } from './stock-modal/stock-modal.component';
-import { OperationModalComponent } from './operation-modal/operation-modal.component';
 
 
 
@@ -12,7 +13,8 @@ import { OperationModalComponent } from './operation-modal/operation-modal.compo
     OperationModalComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   providers: [ModalService]
 })

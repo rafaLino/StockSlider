@@ -1,4 +1,23 @@
-<p>
-    stock-modal works!
-    <button (click)="close()"> click here!</button>
-</p>
+<ion-content>
+    <div class="container">
+        <ion-card>
+            <ion-list class="scrollable_list">
+                <ion-item *ngFor="let stock of stocks$ | async" class="stock_item">
+                    <ion-icon [ngClass]="{'enabled': stock.enabled, 'disabled': !stock.enabled}" [name]="stock.enabled ? 'checkmark-circle-outline' : 'alert-circle-outline'"></ion-icon>
+                    <ion-label>{{stock.name}}</ion-label>
+                    <ion-button (click)="toggleEnabled(stock)" class="enabled_button" size="small" shape="round" fill="outline" slot="end">{{stock.enabled ? 'Desabilitar' : 'Habilitar'}}</ion-button>
+                </ion-item>
+            </ion-list>
+        </ion-card>
+        <form class="input_container" #form="ngForm" (ngSubmit)="insert(form)" novalidate>
+            <ion-item [ngClass]="{'item-has-focus ion-invalid': stockName.touched && stockName.invalid }">
+                <ion-label [class.invalid]="stockName.touched && stockName.invalid" position="floating">Insira o novo ativo</ion-label>
+                <ion-input #stockName="ngModel" ngModel type="text" clear-input="true" name="name" ngDefaultControl required class="uppercase">
+                </ion-input>
+            </ion-item>
+            <ion-button type="submit" color="danger" shape="round">
+                <ion-icon name="add"></ion-icon>
+            </ion-button>
+        </form>
+    </div>
+</ion-content>

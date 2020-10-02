@@ -11,4 +11,11 @@ export class StockFirebaseService extends FirebaseService<Stock> {
     super(firestore.collection('stock'));
   }
 
+  async create(entity: Stock): Promise<string> {
+    entity.name = entity.name.toLocaleUpperCase();
+    return super.create(entity);
+  }
+
+
+
 }

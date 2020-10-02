@@ -1,0 +1,47 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 25px 0;
+}
+
+.enabled {
+    color: green;
+}
+
+.disabled {
+    color: red;
+}
+
+.stock_item {
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.enabled_button {
+    width: 70px;
+    font-size: 8px;
+    font-weight: bold;
+}
+
+.scrollable_list {
+    max-height: 180px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.input_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0 12px;
+    align-items: center;
+}
+
+.invalid {
+    color: var(--ion-color-danger)!important;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}

@@ -12,7 +12,6 @@ export class ModalService {
   constructor(private modalController: ModalController) {
   }
 
-
   async openStockModal(payload?: Stock) {
     this.modalRef = await this.modalController.create({
       component: StockModalComponent,
@@ -30,10 +29,6 @@ export class ModalService {
     });
     await this.modalRef.present();
 
-  }
-
-  async closeModal(payload: { data?: any, success?: boolean }): Promise<boolean> {
-    return this.modalController.dismiss(payload);
   }
 
   async onClose(): Promise<{ data?: any, success: boolean }> {
