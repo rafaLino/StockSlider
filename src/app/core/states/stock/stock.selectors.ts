@@ -7,8 +7,10 @@ const state = createFeatureSelector<StockState>('stock');
 
 const AsList = createSelector(state, (x => Object.values(x.entities)));
 
+const isLoading = createSelector(state, x => x.loading);
 
 export const StockSelectors = {
-    ...adapter.getSelectors(),
-    AsList
+    ...adapter.getSelectors(state),
+    AsList,
+    isLoading
 }

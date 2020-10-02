@@ -1,8 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Components } from '@ionic/core';
-import { of } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { Stock } from 'src/app/core/entities/stock.model';
+import { AppState } from 'src/app/core/states';
+import { StockActions } from 'src/app/core/states/stock/stock.actions';
+import { StockSelectors } from 'src/app/core/states/stock/stock.selectors';
+import { StockState } from 'src/app/core/states/stock/stock.state';
 @Component({
   selector: 'app-stock-modal',
   templateUrl: './stock-modal.component.html',
@@ -13,34 +18,37 @@ export class StockModalComponent implements OnInit {
   static mainClass: string = 'stock-modal';
   @Input() modal: Components.IonModal;
 
-  constructor() { }
+  public stock: Stock = new Stock();
 
-  stocks$: Promise<Array<Stock>> = of([
-    { id: "1", name: 'ITSA4', enabled: false } as Stock,
-    { id: "2", name: 'MDIA3', enabled: true } as Stock,
-    { id: "3", name: 'ABEV3', enabled: false } as Stock,
-    { id: "4", name: 'EGIE3', enabled: true } as Stock,
-  ]).toPromise();
+  constructor(
+    private store: Store<AppState>
+  ) { }
 
-  ngOnInit() { }
+  stocks$: Observable<Stock[]>;
+  isLoading: Observable<boolean>;
+  ngOnInit() {
+    this.isLoading = this.store.select(StockSelectors.isLoading);
+    this.stocks$ = this.store.select(StockSelectors.selectAll);
+  }
 
   closeModal() {
     this.modal.dismiss();
   }
 
   toggleEnabled(stock: Stock) {
-    console.log(stock)
+    this.store.dispatch(StockActions.update({ id: stock.id, changes: { enabled: !stock.enabled } }));
+  }
+
+  update(stock: Stock) {
+    this.stock = stock;
   }
 
   insert(form: NgForm) {
     if (form.valid) {
-      this.modal.dismiss({
-        data: {
-          ...form.value,
-          enabled: true
-        },
-        success: true
-      });
+      if (this.stock.id)
+        this.store.dispatch(StockActions.update({ id: this.stock.id, changes: this.stock }));
+      else
+        this.store.dispatch(StockActions.create({ stock: this.stock }));
     }
     else {
       form.controls.name.markAsTouched();

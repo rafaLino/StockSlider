@@ -31,9 +31,4 @@ export class ModalService {
 
   }
 
-  async onClose(): Promise<{ data?: any, success: boolean }> {
-    const payload = await this.modalRef.onDidDismiss();
-    return Promise.resolve(payload?.data || {});
-  }
-
 }
