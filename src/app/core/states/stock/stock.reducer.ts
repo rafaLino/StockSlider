@@ -8,7 +8,6 @@ import { StockState } from './stock.state';
 export const adapter: EntityAdapter<Stock> = createEntityAdapter<Stock>();
 
 const initialState: StockState = adapter.getInitialState({
-    success: false,
     error: false,
     loading: false,
     errors: undefined
@@ -21,7 +20,6 @@ const stockreducer = createReducer(
         return {
             ...state,
             loading: true,
-            success: false,
             error: false,
             errors: undefined
         };
@@ -30,7 +28,6 @@ const stockreducer = createReducer(
         return {
             ...state,
             loading: true,
-            success: false,
             error: false,
             errors: undefined
         };
@@ -42,7 +39,6 @@ const stockreducer = createReducer(
         }, {
             ...state,
             loading: true,
-            success: false,
             error: false,
             errors: undefined
         });
@@ -52,7 +48,6 @@ const stockreducer = createReducer(
             {
                 ...state,
                 loading: true,
-                success: false,
                 error: false,
                 errors: undefined
             });
@@ -64,7 +59,6 @@ const stockreducer = createReducer(
                 {
                     ...state,
                     loading: false,
-                    success: true,
                     error: false,
                     errors: undefined
                 });
@@ -74,7 +68,6 @@ const stockreducer = createReducer(
                 {
                     ...state,
                     loading: false,
-                    success: true,
                     error: false,
                     errors: undefined
                 });
@@ -83,7 +76,6 @@ const stockreducer = createReducer(
             return {
                 ...state,
                 loading: false,
-                success: true,
                 error: false,
                 errors: undefined
             }
