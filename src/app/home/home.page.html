@@ -1,6 +1,8 @@
 <ion-content [fullscreen]="true">
     <div id="container">
-
+        <ion-item *ngFor="let stock of stocks$ | async">
+            {{item.name}}
+        </ion-item>
     </div>
 
     <ion-fab size="large" vertical="bottom" horizontal="center" slot="fixed">

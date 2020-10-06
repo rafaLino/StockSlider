@@ -14,7 +14,6 @@ export class HomePage implements OnInit {
   constructor(private pageService: HomePageService) { }
 
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
   }
 
   addStock() {
